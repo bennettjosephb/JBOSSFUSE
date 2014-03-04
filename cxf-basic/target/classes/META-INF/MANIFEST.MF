@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1394533758320
+Build-Jdk: 1.7.0_45
+Built-By: City
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache ServiceMix :: CXF Code First OSGi Bundle
+Bundle-SymbolicName: cxf-basic
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Export-Package: org.fusesource.example.client;uses:="org.fusesource.exam
+ ple,org.apache.cxf.jaxws,javax.xml.ws";version="1.0.0.SNAPSHOT",org.fus
+ esource.example;uses:="javax.jws,javax.xml.bind.annotation,org.fusesour
+ ce.example.types,javax.xml.ws";version="1.0.0.SNAPSHOT",org.fusesource.
+ example.types;uses:="javax.xml.bind.annotation";version="1.0.0.SNAPSHOT
+ "
+Import-Package: META-INF.cxf;version="[2.6,3)",META-INF.cxf.osgi;version
+ ="[2.6,3)",javax.jws;version="[2.0,3)",javax.wsdl,javax.xml.bind,javax.
+ xml.bind.annotation,javax.xml.namespace,javax.xml.ws;version="[2.2,3)",
+ org.apache.cxf.bus;version="[2.6,3)",org.apache.cxf.bus.resource;versio
+ n="[2.6,3)",org.apache.cxf.bus.spring;version="[2.6,3)",org.apache.cxf.
+ configuration.spring;version="[2.6,3)",org.apache.cxf.jaxws;version="[2
+ .6,3)",org.apache.cxf.resource;version="[2.6,3)",org.apache.cxf.transpo
+ rt.http;version="[2.6,3)",org.springframework.beans.factory.config
+Require-Bundle: org.apache.cxf.bundle
+Tool: Bnd-1.50.0
