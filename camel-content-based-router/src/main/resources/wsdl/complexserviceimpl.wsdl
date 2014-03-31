@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ComplexServiceImplService" targetNamespace="http://webservice/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://webservice/" schemaLocation="complexserviceimpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="sampleMethod">
+    <wsdl:part name="parameters" element="tns:sampleMethod">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sampleMethodResponse">
+    <wsdl:part name="parameters" element="tns:sampleMethodResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ComplexService">
+    <wsdl:operation name="sampleMethod">
+      <wsdl:input name="sampleMethod" message="tns:sampleMethod">
+    </wsdl:input>
+      <wsdl:output name="sampleMethodResponse" message="tns:sampleMethodResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ComplexServiceImplServiceSoapBinding" type="tns:ComplexService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sampleMethod">
+      <soap:operation soapAction="urn:SampleMethod" style="document"/>
+      <wsdl:input name="sampleMethod">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sampleMethodResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ComplexServiceImplService">
+    <wsdl:port name="ComplexServiceImplPort" binding="tns:ComplexServiceImplServiceSoapBinding">
+      <soap:address location="http://localhost:9090/ComplexServiceImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

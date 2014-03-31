@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/addResponse"
+	xmlns:tns="http://www.example.org/addResponse" elementFormDefault="qualified">
+	<complexType name="addResponse">
+		<sequence>
+			<element name="sum" type="int" maxOccurs="1" minOccurs="0"/>
+		</sequence>
+	</complexType>
+
+	<element name="addResponse" type="tns:addResponse"></element>
+</schema>

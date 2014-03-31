@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+	<jaxws:endpoint xmlns:tns="http://webservice/" id="webserviceclass"
+		implementor="webservice.WebserviceClass" wsdlLocation="wsdl/webserviceclass.wsdl"
+		endpointName="tns:WebserviceClassPort" serviceName="tns:WebserviceClassService"
+		address="/WebserviceClassPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+	<jaxws:endpoint xmlns:tns="http://webservice/" id="complexservice"
+		implementor="webservice.ComplexServiceImpl" wsdlLocation="wsdl/complexserviceimpl.wsdl"
+		endpointName="tns:ComplexServiceImplPort" serviceName="tns:ComplexServiceImplService"
+		address="/ComplexServiceImplPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+	<jaxws:endpoint xmlns:tns="http://example/wrapped/add"
+		id="addService" implementor="example.wrapped.add.AddImpl"
+		wsdlLocation="wsdl/add.wsdl" endpointName="tns:addSoapPort"
+		serviceName="tns:addService" address="/addSoapPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+	<jaxws:endpoint xmlns:tns="http://example/wrapped/addList"
+		id="addListService" implementor="example.wrapped.addlist.AddListImpl"
+		wsdlLocation="wsdl/addList.wsdl" endpointName="tns:addListSoapPort"
+		serviceName="tns:addListService" address="/addListSoapPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+	<jaxws:endpoint xmlns:tns="http://example/wrapped/subtract"
+		id="subtractService" implementor="example.wrapped.subtract.SubtractImpl"
+		wsdlLocation="wsdl/subtract.wsdl" endpointName="tns:subtractSoapPort"
+		serviceName="tns:subtractService" address="/subtractSoapPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+	<jaxws:endpoint xmlns:tns="http://example/wrapped/multiply"
+		id="multiplyService" implementor="example.wrapped.multiply.MultiplyImpl"
+		wsdlLocation="wsdl/multiply.wsdl" endpointName="tns:multiplySoapPort"
+		serviceName="tns:multiplyService" address="/multiplySoapPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+	<jaxws:endpoint xmlns:tns="http://example/wrapped/divide"
+		id="divideService" implementor="example.wrapped.divide.DivideImpl"
+		wsdlLocation="wsdl/divide.wsdl" endpointName="tns:divideSoapPort"
+		serviceName="tns:divideService" address="/divideSoapPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+	<!-- <jaxws:endpoint xmlns:tns="http://example/wrapped/mathoperation" id="mathoperationService" 
+		implementor="example.wrapped.mathoperation.MathOperationImpl" wsdlLocation="wsdl/mathoperation.wsdl" 
+		endpointName="tns:mathSoapPort" serviceName="tns:mathService" address="/mathSoapPort"> 
+		<jaxws:features> <bean class="org.apache.cxf.feature.LoggingFeature" /> </jaxws:features> 
+		</jaxws:endpoint> -->
+	<!-- <jaxws:endpoint xmlns:tns="http://aggregate.example.org/" id="mathoperation" 
+		implementor="org.example.aggregate.MathOperationImpl" wsdlLocation="wsdl/mathoperationimpl.wsdl" 
+		endpointName="tns:MathOperationPort" serviceName="tns:MathOperationImplService" 
+		address="/MathOperationPort"> <jaxws:features> <bean class="org.apache.cxf.feature.LoggingFeature" 
+		/> </jaxws:features> </jaxws:endpoint> -->
+	<jaxws:endpoint xmlns:tns="http://www.example.org/aggregate/"
+		id="aggregateService" implementor="org.example.aggregate.AggregateImpl"
+		wsdlLocation="wsdl/aggregate.wsdl" endpointName="tns:aggregateSOAPPort"
+		serviceName="tns:aggregateService" address="/aggregateSOAPPort">
+		<jaxws:features>
+			<bean class="org.apache.cxf.feature.LoggingFeature" />
+		</jaxws:features>
+	</jaxws:endpoint>
+</beans>

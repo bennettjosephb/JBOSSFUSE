@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MathOperationImplService" targetNamespace="http://www.example.org/aggregate/" xmlns:ns1="http://aggregate.example.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://www.example.org/aggregate/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:import namespace="http://aggregate.example.org/" location="MathOperationInterface.wsdl">
+    </wsdl:import>
+  <wsdl:binding name="MathOperationImplServiceSoapBinding" type="ns1:MathOperationInterface">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="add">
+      <soap:operation soapAction="urn:Add" style="document"/>
+      <wsdl:input name="add">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="subtract">
+      <soap:operation soapAction="urn:Subtract" style="document"/>
+      <wsdl:input name="subtract">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="subtractResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="divide">
+      <soap:operation soapAction="urn:Divide" style="document"/>
+      <wsdl:input name="divide">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="divideResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addList">
+      <soap:operation soapAction="urn:AddList" style="document"/>
+      <wsdl:input name="addList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="addListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="multiply">
+      <soap:operation soapAction="urn:Multiply" style="document"/>
+      <wsdl:input name="multiply">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="multiplyResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MathOperationImplService">
+    <wsdl:port name="MathOperationPort" binding="tns:MathOperationImplServiceSoapBinding">
+      <soap:address location="http://localhost:9090/MathOperationPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

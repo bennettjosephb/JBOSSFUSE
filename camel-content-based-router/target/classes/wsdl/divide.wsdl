@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="divideWrappedLiteral"
+
+	targetNamespace="http://example/wrapped/divide" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:types="http://divide/types"
+
+	xmlns:tns="http://www.example.org/divide" xmlns:pref="http://www.example.org/divideResponse"
+
+	xmlns:intf="http://example/wrapped/divide">
+
+	<wsdl:types>
+
+		<xsd:schema elementFormDefault="qualified" targetNamespace="http://divide/types"
+			xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.example.org/divide"
+			xmlns:pref="http://www.example.org/divideResponse">
+
+			<xsd:import schemaLocation="divide.xsd" namespace="http://www.example.org/divide">
+			</xsd:import>
+			<xsd:import schemaLocation="divideResponse.xsd"
+				namespace="http://www.example.org/divideResponse"></xsd:import>
+
+		</xsd:schema>
+
+	</wsdl:types>
+
+	<wsdl:message name="divideRequest">
+
+		<wsdl:part name="request" element="tns:divide" />
+
+	</wsdl:message>
+
+	<wsdl:message name="divideResponse">
+
+		<wsdl:part name="response" element="pref:divideResponse" />
+
+	</wsdl:message>
+
+	<wsdl:portType name="divide">
+
+		<wsdl:operation name="divide">
+
+			<wsdl:input message="intf:divideRequest" />
+
+			<wsdl:output message="intf:divideResponse" />
+
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding name="divideSoapBinding" type="intf:divide">
+
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http"
+
+			style="document" />
+
+		<wsdl:operation name="divide">
+
+			<soap:operation soapAction="http://example/wrapped/divide" />
+
+			<wsdl:input>
+
+				<soap:body use="literal" />
+
+			</wsdl:input>
+
+			<wsdl:output>
+
+				<soap:body use="literal" />
+
+			</wsdl:output>
+
+		</wsdl:operation>
+
+	</wsdl:binding>
+
+	<wsdl:service name="divideService">
+
+		<wsdl:port name="divideSoapPort" binding="intf:divideSoapBinding">
+
+			<soap:address location="..." />
+
+		</wsdl:port>
+
+	</wsdl:service>
+
+</wsdl:definitions>
