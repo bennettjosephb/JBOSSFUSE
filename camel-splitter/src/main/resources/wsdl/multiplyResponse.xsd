@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/multiplyResponse"
+	xmlns:tns="http://www.example.org/multiplyResponse" elementFormDefault="qualified">
+	<complexType name="multiplyResponse">
+		<sequence>
+			<element name="sum" type="int" />
+		</sequence>
+	</complexType>
+
+	<element name="multiplyResponse" type="tns:multiplyResponse"></element>
+</schema>

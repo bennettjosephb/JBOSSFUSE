@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/addList"
+	xmlns:tns="http://www.example.org/addList" elementFormDefault="qualified">
+	<complexType name="addList">
+		<sequence>
+			<element name="arguments" type="int" maxOccurs="unbounded" minOccurs="1"/>
+		</sequence>
+	</complexType>
+
+	<element name="addList" type="tns:addList"></element>
+</schema>

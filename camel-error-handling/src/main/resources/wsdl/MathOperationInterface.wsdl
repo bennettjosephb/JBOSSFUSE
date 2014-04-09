@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MathOperationInterface" targetNamespace="http://aggregate.example.org/" xmlns:ns1="http://aggregate.example.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://aggregate.example.org/" schemaLocation="mathoperationimpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="multiply">
+    <wsdl:part name="parameters" element="ns1:multiply">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="divide">
+    <wsdl:part name="parameters" element="ns1:divide">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addListResponse">
+    <wsdl:part name="parameters" element="ns1:addListResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addList">
+    <wsdl:part name="parameters" element="ns1:addList">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="divideResponse">
+    <wsdl:part name="parameters" element="ns1:divideResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="subtractResponse">
+    <wsdl:part name="parameters" element="ns1:subtractResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="add">
+    <wsdl:part name="parameters" element="ns1:add">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="addResponse">
+    <wsdl:part name="parameters" element="ns1:addResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="subtract">
+    <wsdl:part name="parameters" element="ns1:subtract">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="multiplyResponse">
+    <wsdl:part name="parameters" element="ns1:multiplyResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MathOperationInterface">
+    <wsdl:operation name="subtract">
+      <wsdl:input name="subtract" message="ns1:subtract">
+    </wsdl:input>
+      <wsdl:output name="subtractResponse" message="ns1:subtractResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="add">
+      <wsdl:input name="add" message="ns1:add">
+    </wsdl:input>
+      <wsdl:output name="addResponse" message="ns1:addResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="divide">
+      <wsdl:input name="divide" message="ns1:divide">
+    </wsdl:input>
+      <wsdl:output name="divideResponse" message="ns1:divideResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="multiply">
+      <wsdl:input name="multiply" message="ns1:multiply">
+    </wsdl:input>
+      <wsdl:output name="multiplyResponse" message="ns1:multiplyResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="addList">
+      <wsdl:input name="addList" message="ns1:addList">
+    </wsdl:input>
+      <wsdl:output name="addListResponse" message="ns1:addListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

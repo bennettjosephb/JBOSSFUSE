@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/blueprint"
+	xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+	xsi:schemaLocation="
+       http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd  
+       http://camel.apache.org/schema/blueprint/cxf http://camel.apache.org/schema/blueprint/cxf/camel-cxf.xsd
+       http://camel.apache.org/schema/blueprint  http://camel.apache.org/schema/blueprint/camel-blueprint.xsd">
+
+	<cxf:cxfEndpoint id="webserviceProxy" xmlns:tns="http://webservice/"
+		xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+		address="http://localhost:8383/service_sample_proxy/services_proxy/proxyport"
+		endpointName="tns:ComplexServiceImplPort" serviceName="tns:ComplexServiceImplService"
+		serviceClass="webservice.ComplexServiceImpl" wsdlURL="wsdl/complexserviceimpl.wsdl" />
+
+	<cxf:cxfEndpoint id="customerServiceReal" xmlns:tns="http://webservice/"
+		xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+		address="http://localhost:8080/service_sample/services/ComplexServiceImplPort"
+		endpointName="tns:ComplexServiceImplPort" serviceName="tns:ComplexServiceImplService"
+		wsdlURL="wsdl/complexserviceimpl.wsdl" serviceClass="webservice.ComplexServiceImpl" />
+
+	<cxf:cxfEndpoint id="customerServiceReal1" xmlns:tns="http://webservice/"
+		xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+		address="http://localhost:8080/service_sample/services/WebserviceClassPort"
+		endpointName="tns:WebserviceClassPort" serviceName="tns:WebserviceClassService"
+		wsdlURL="wsdl/webserviceclass.wsdl" serviceClass="webservice.WebserviceClass" />
+
+	<cxf:cxfEndpoint id="addOperation" xmlns:tns="http://example/wrapped/add"
+		xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf" address="http://localhost:8080/service_sample/services/addSoapPort"
+		endpointName="tns:addSoapPort" serviceName="tns:addService" wsdlURL="wsdl/add.wsdl"
+		serviceClass="example.wrapped.add.AddImpl" />
+	<cxf:cxfEndpoint id="addListOperation" xmlns:tns="http://example/wrapped/addList"
+		xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+		address="http://localhost:8080/service_sample/services/addListSoapPort"
+		endpointName="tns:addListSoapPort" serviceName="tns:addListService"
+		wsdlURL="wsdl/addList.wsdl" serviceClass="example.wrapped.addList.addListImpl" />
+	<cxf:cxfEndpoint id="subtractOperation" xmlns:tns="http://example/wrapped/subtract"
+		xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+		address="http://localhost:8080/service_sample/services/subtractSoapPort"
+		endpointName="tns:subtractSoapPort" serviceName="tns:subtractService"
+		wsdlURL="wsdl/subtract.wsdl" serviceClass="example.wrapped.subtract.SubtractImpl" />
+	<cxf:cxfEndpoint id="multiplyOperation" xmlns:tns="http://example/wrapped/multiply"
+		xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+		address="http://localhost:8080/service_sample/services/multiplySoapPort"
+		endpointName="tns:multiplySoapPort" serviceName="tns:multiplyService"
+		wsdlURL="wsdl/multiply.wsdl" serviceClass="example.wrapped.multiply.MultiplyImpl" />
+	<cxf:cxfEndpoint id="divideOperation" xmlns:tns="http://example/wrapped/divide"
+		xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+		address="http://localhost:8080/service_sample/services/divideSoapPort"
+		endpointName="tns:divideSoapPort" serviceName="tns:divideService"
+		wsdlURL="wsdl/divide.wsdl" serviceClass="example.wrapped.divide.DivideImpl" />
+	<cxf:cxfEndpoint id="aggregateOperation" xmlns:tns="http://www.example.org/aggregate/"
+		xmlns:cxf="http://camel.apache.org/schema/blueprint/cxf"
+		address="http://localhost:8989/service_sample_proxy/service_proxy/aggregateSOAPPort"
+		endpointName="tns:aggregateSOAPPort" serviceName="tns:aggregateService"
+		wsdlURL="wsdl/aggregate.wsdl" serviceClass="org.example.aggregate.AggregateImpl" />
+
+	<bean id="helloBean" class="com.mycompany.camel.content.based.router.HelloBean">
+		<property name="say" value="Hi from Camel" />
+	</bean>
+
+	<bean id="requestDataProcessor" class="org.fusesource.example.RequestDataProcessor" />
+
+	<bean id="responseDataProcessor" class="org.fusesource.example.ResponseDataProcessor" />
+
+	<bean id="addResponseProcessor" class="org.fusesource.example.AddResponseProcessor" />
+
+	<bean id="subtractResponseProcessor" class="org.fusesource.example.SubtractResponseProcessor" />
+
+	<bean id="multiplyResponseProcessor" class="org.fusesource.example.MultiplyResponseProcessor" />
+
+	<bean id="divideResponseProcessor" class="org.fusesource.example.DivideResponseProcessor" />
+
+	<bean id="requestHeaderProcessor" class="org.fusesource.example.RequestHeaderProcessor" />
+
+	<bean id="responseHeaderProcessor" class="org.fusesource.example.ResponseHeaderProcessor" />
+
+	<camelContext trace="false" id="blueprintContext"
+		xmlns="http://camel.apache.org/schema/blueprint">
+		<errorHandler type="DeadLetterChannel" deadLetterUri="log:DLC"
+			id="dlc">
+			<redeliveryPolicy maximumRedeliveries="5"
+				redeliveryDelay="250" backOffMultiplier="2" useExponentialBackOff="true"
+				retryAttemptedLogLevel="INFO" />
+		</errorHandler>
+		<onException>
+			<exception>javax.xml.xpath.XPathException</exception>
+			<exception>javax.xml.transform.TransformerException</exception>
+			<to uri="log:xml?level=WARN" />
+		</onException>
+		<route id="httpBridge">
+			<description>&lt;to uri="cxf:bean:customerServiceReal"/&gt;</description>
+			<from uri="cxf:bean:aggregateOperation?dataFormat=POJO" />
+			<process ref="requestHeaderProcessor" />
+			<choice>
+				<when>
+					<simple>${in.header.operationName} == 'add'</simple>
+					<to uri="addOperation" />
+				</when>
+				<when>
+					<simple>${in.header.operationName} == 'subtract'</simple>
+					<to uri="subtractOperation" />
+				</when>
+				<when>
+					<simple>${in.header.operationName} == 'multiply'</simple>
+					<to uri="multiplyOperation" />
+				</when>
+				<when>
+					<simple>${in.header.operationName} == 'divide'</simple>
+					<to uri="divideOperation" />
+				</when>
+			</choice>
+			<log message="Got ${body}" />
+			<process ref="responseHeaderProcessor" />
+		</route>
+	</camelContext>
+
+</blueprint>

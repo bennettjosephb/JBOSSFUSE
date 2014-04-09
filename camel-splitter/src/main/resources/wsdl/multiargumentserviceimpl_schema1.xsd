@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:tns="http://webservice/" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://webservice/" version="1.0">
+<xs:element name="invokeMe" type="tns:invokeMe"/>
+<xs:element name="invokeMeResponse" type="tns:invokeMeResponse"/>
+<xs:element name="multiArgumentMethod" type="tns:multiArgumentMethod"/>
+<xs:element name="multiArgumentMethodResponse" type="tns:multiArgumentMethodResponse"/>
+<xs:element name="sampleMethod" type="tns:sampleMethod"/>
+<xs:element name="sampleMethodResponse" type="tns:sampleMethodResponse"/>
+<xs:complexType name="multiArgumentMethod">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arg0" type="tns:requestBean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="requestBean">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="multiArgumentMethodResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:responseBean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="responseBean">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="requestData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="no" type="xs:int"/>
+      <xs:element minOccurs="0" name="salary" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="invokeMe">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sampleMethod">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:requestData"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="sampleMethodResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:requestDataResponse"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="requestDataResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="reply" type="xs:string"/>
+      <xs:element minOccurs="0" name="status" type="xs:boolean"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="invokeMeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

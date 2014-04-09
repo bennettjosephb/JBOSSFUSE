@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="MultiArgumentServiceImplService" targetNamespace="http://webservice/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://webservice/" schemaLocation="multiargumentserviceimpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="multiArgumentMethodResponse">
+    <wsdl:part name="parameters" element="tns:multiArgumentMethodResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="multiArgumentMethod">
+    <wsdl:part name="parameters" element="tns:multiArgumentMethod">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MultiArgumentServiceInterface">
+    <wsdl:operation name="multiArgumentMethod">
+      <wsdl:input name="multiArgumentMethod" message="tns:multiArgumentMethod">
+    </wsdl:input>
+      <wsdl:output name="multiArgumentMethodResponse" message="tns:multiArgumentMethodResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MultiArgumentServiceImplServiceSoapBinding" type="tns:MultiArgumentServiceInterface">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="multiArgumentMethod">
+      <soap:operation soapAction="urn:MultiArgumentMethod" style="document"/>
+      <wsdl:input name="multiArgumentMethod">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="multiArgumentMethodResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MultiArgumentServiceImplService">
+    <wsdl:port name="MultiArgumentServiceImplPort" binding="tns:MultiArgumentServiceImplServiceSoapBinding">
+      <soap:address location="http://localhost:9090/MultiArgumentServiceImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

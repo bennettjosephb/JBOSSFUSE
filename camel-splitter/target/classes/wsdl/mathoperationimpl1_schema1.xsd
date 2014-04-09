@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:tns="http://d.c.b.a/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://d.c.b.a/" version="1.0">
+<xs:element name="add" type="tns:add"/>
+<xs:element name="addList" type="tns:addList"/>
+<xs:element name="addListResponse" type="tns:addListResponse"/>
+<xs:element name="addResponse" type="tns:addResponse"/>
+<xs:element name="divide" type="tns:divide"/>
+<xs:element name="divideResponse" type="tns:divideResponse"/>
+<xs:element name="multiply" type="tns:multiply"/>
+<xs:element name="multiplyResponse" type="tns:multiplyResponse"/>
+<xs:element name="subtract" type="tns:subtract"/>
+<xs:element name="subtractResponse" type="tns:subtractResponse"/>
+<xs:complexType name="multiply">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="multiplyResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addList">
+    <xs:sequence>
+      <xs:element maxOccurs="unbounded" minOccurs="0" name="arg0" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addListResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="add">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:int"/>
+      <xs:element minOccurs="0" name="arg1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="addResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="subtract">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="subtractResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="divide">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="divideResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

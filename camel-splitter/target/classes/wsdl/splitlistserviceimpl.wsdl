@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SplitListServiceImplService" targetNamespace="http://webservice/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://webservice/" schemaLocation="splitlistserviceimpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="splitListResponse">
+    <wsdl:part name="parameters" element="tns:splitListResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="splitList">
+    <wsdl:part name="parameters" element="tns:splitList">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SplitListService">
+    <wsdl:operation name="splitList">
+      <wsdl:input name="splitList" message="tns:splitList">
+    </wsdl:input>
+      <wsdl:output name="splitListResponse" message="tns:splitListResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SplitListServiceImplServiceSoapBinding" type="tns:SplitListService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="splitList">
+      <soap:operation soapAction="urn:SplitList" style="document"/>
+      <wsdl:input name="splitList">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="splitListResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SplitListServiceImplService">
+    <wsdl:port name="SplitListServiceImplPort" binding="tns:SplitListServiceImplServiceSoapBinding">
+      <soap:address location="http://localhost:9090/SplitListServiceImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

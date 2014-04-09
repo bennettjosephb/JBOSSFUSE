@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:tns="http://webservice/" xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="http://webservice/" version="1.0">
+<xs:element name="invokeMe" type="tns:invokeMe"/>
+<xs:element name="invokeMeResponse" type="tns:invokeMeResponse"/>
+<xs:complexType name="invokeMe">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+<xs:complexType name="invokeMeResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
