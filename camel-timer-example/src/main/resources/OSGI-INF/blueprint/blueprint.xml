@@ -12,8 +12,7 @@
 	<camelContext id="blueprintContext" trace="false"
 		xmlns="http://camel.apache.org/schema/blueprint">
 		<route id="timerToLog">
-			<from uri="timer:foo?period=1000" />
-			<to uri="file:/data/inbox?noop=true&amp;delay=5000&amp;recursive=true&amp;delete=true" " />
+			<from uri="file:/data/inbox?noop=true&amp;delay=5000&amp;recursive=true&amp;delete=true"/>
 			<to uri="file:/data/outbox" />
 		</route>
 	</camelContext>

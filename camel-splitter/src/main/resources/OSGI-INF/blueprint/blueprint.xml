@@ -90,10 +90,10 @@
 	<camelContext trace="false" id="blueprintContext" xmlns="http://camel.apache.org/schema/blueprint" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:test="http://webservice/">
     <route streamCache="true" id="httpBridge">
         <description>&lt;to uri="cxf:bean:customerServiceReal"/&gt;</description>
-        <from uri="cxf:bean:splitterOperation?dataFormat=MESSAGE"/>
+        <from uri="cxf:bean:splitterOperation?dataFormat=POJO"/>
         <process ref="requestSplitProcessor"/>
         <split>
-            <simple></simple>
+            <simple>${body[0]}</simple>
             <bean ref="requestHeaderProcessor" method="process"/>
         </split>
         <to uri="cxf:bean:realService"/>
